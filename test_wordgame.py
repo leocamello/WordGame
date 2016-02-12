@@ -185,6 +185,57 @@ def test_isValidWord(wordList):
     if not failure:
         print "SUCCESS: test_isValidWord()"
 
+# end of test_updateHand
+        
+def test_calculateHandlen():
+    """
+    Unit test for calculateHandlen
+    """
+    # test 1
+    handOrig = {}
+    handCopy = handOrig.copy()
+    
+    length = calculateHandlen(handOrig)
+    expectedLength = 0
+    if length != expectedLength:
+        print "FAILURE: test_calculateHandlen()"
+        print "\tReturned: ", length, "\n\t-- but expected:", expectedLength
+
+        return # exit function
+
+    if handCopy != handOrig:
+        print "FAILURE: test_calculateHandlen()"
+        print "\tOriginal hand was", handOrig
+        print "\tbut implementation of calculateHandlen mutated the original hand!"
+        print "\tNow the hand looks like this:", handCopy
+        
+        return # exit function
+        
+    # test 2
+    handOrig = {'a':1, 'q':1, 'l':2, 'm':1, 'u':1, 'i':1}
+    handCopy = handOrig.copy()
+
+    length = calculateHandlen(handOrig)
+    expectedLength = 7
+    if length != expectedLength:
+        print "FAILURE: test_calculateHandlen()"
+        print "\tReturned: ", length, "\n\t-- but expected:", expectedLength
+
+        return # exit function
+
+    if handCopy != handOrig:
+        print "FAILURE: test_calculateHandlen()"
+        print "\tOriginal hand was", handOrig
+        print "\tbut implementation of calculateHandlen mutated the original hand!"
+        print "\tNow the hand looks like this:", handCopy
+        
+        return # exit function
+
+    print "SUCCESS: test_calculateHandlen()"
+
+# end of test_calculateHandlen
+        
+
 
 wordList = loadWords()
 print "----------------------------------------------------------------------"
@@ -196,5 +247,8 @@ test_updateHand()
 print "----------------------------------------------------------------------"
 print "Testing isValidWord..."
 test_isValidWord(wordList)
+print "----------------------------------------------------------------------"
+print "Testing calculateHandlen..."
+test_calculateHandlen()
 print "----------------------------------------------------------------------"
 print "All done!"
