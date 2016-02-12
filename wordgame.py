@@ -83,7 +83,7 @@ def getWordScore(word, n):
     if len(word) == n:
         score += 50
     return score
-    
+
 #
 # Problem #2: Make sure you understand how this function works and what it does!
 #
@@ -151,10 +151,11 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
-
-
-
+    updatedHand = hand.copy()
+    for letter in word:
+        updatedHand[letter] -= 1
+    return updatedHand
+    
 #
 # Problem #3: Test word validity
 #
