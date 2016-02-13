@@ -64,8 +64,8 @@ def compChooseWord(hand, wordList, n):
 
     # return the best word you found.
     return bestWord
-    
-    
+
+
 #
 # Problem #7: Computer plays a hand
 #
@@ -88,8 +88,37 @@ def compPlayHand(hand, wordList, n):
     wordList: list (string)
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    # Keep track of the total score
+    totalScore = 0
     
+    # As long as there are still letters left in the hand:
+    while calculateHandlen(hand) != 0:
+        # Display the hand
+        print("Current Hand: "),
+        displayHand(hand)
+            
+        # The computer chooses a word
+        word = compChooseWord(hand, wordList, n)
+        
+        # If the input is a single period:
+        if word == None:    
+            # End the game (break out of the loop)
+            break            
+        # Otherwise (the input is not a single period):
+        else:        
+            # Tell the computer how many points the word earned, and the updated total score, in one line followed by a blank line
+            wordScore = getWordScore(word, n)
+            totalScore += wordScore
+            print(("\"{0}\" earned {1} points. Total: {2} points").format(word, wordScore, totalScore))
+            print("")
+            
+            # Update the hand 
+            hand = updateHand(hand, word)
+
+    # Game is over, so tell computer the total score
+    print(("Total score: {0} points.").format(totalScore))
+
+     
 #
 # Problem #8: Playing a game
 #
