@@ -1,4 +1,4 @@
-from ps4a import *
+from wordgame import *
 import time
 
 
