@@ -118,7 +118,7 @@ def compPlayHand(hand, wordList, n):
     # Game is over, so tell computer the total score
     print(("Total score: {0} points.").format(totalScore))
 
-     
+    
 #
 # Problem #8: Playing a game
 #
@@ -147,8 +147,39 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    print "playGame not yet implemented." # <-- Remove this when you code this function
+    hand = {}
+    gameMode = ""    
+    while gameMode != 'e':
+        gameMode = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        if gameMode == 'n':        
+            playerMode = ""
+            while not (playerMode == 'u' or playerMode == 'c'):
+                playerMode = raw_input("Enter u to have yourself play, c to have the computer play: ")
+                if playerMode == 'u':                
+                    hand = dealHand(HAND_SIZE)
+                    playHand(hand, wordList, HAND_SIZE)
+                elif playerMode == 'c':       
+                    hand = dealHand(HAND_SIZE)
+                    compPlayHand(hand, wordList, HAND_SIZE)
+                else:
+                    print("Invalid command.")    
+        elif gameMode == 'r':
+            if len(hand) == 0:
+                print("You have not played a hand yet. Please play a new hand first!")
+            else:                
+                playerMode = ""
+                while not (playerMode == 'u' or playerMode == 'c'):
+                    playerMode = raw_input("Enter u to have yourself play, c to have the computer play: ")
+                    if playerMode == 'u':            
+                        playHand(hand, wordList, HAND_SIZE)
+                    elif playerMode == 'c':       
+                        compPlayHand(hand, wordList, HAND_SIZE)
+                    else:
+                        print("Invalid command.")    
+        elif gameMode == 'e':
+            break
+        else:
+            print("Invalid command.")
 
         
 #
